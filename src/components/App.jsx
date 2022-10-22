@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import { Container } from './App.styled';
 import Modal from './Modal';
 
 class App extends Component {
   state = {
-    showModal: true,
+    showModal: false,
   };
 
   toggleModal = () => {
@@ -13,9 +14,9 @@ class App extends Component {
   render() {
     const { showModal } = this.state;
     return (
-      <div>
+      <Container>
         {showModal && (
-          <Modal>
+          <Modal onClose={this.toggleModal}>
             <h1>hello</h1>
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt
@@ -24,7 +25,7 @@ class App extends Component {
             </p>
           </Modal>
         )}
-      </div>
+      </Container>
     );
   }
 }
