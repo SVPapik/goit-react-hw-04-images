@@ -26,9 +26,12 @@ class Modal extends Component {
   };
 
   render() {
+    const { url, alt } = this.props;
     return createPortal(
       <Backdrop onClick={this.onBackdropClick}>
-        <ModalContent>{this.props.children}</ModalContent>
+        <ModalContent>
+          <img src={url} alt={alt} />
+        </ModalContent>
       </Backdrop>,
       modalRoot
     );

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Container } from './App.styled';
 import Searchbar from './Searchbar';
 import fetchImg from '../Fetch/Fetch';
-import Modal from './Modal';
+import ImageGallery from './ImageGallery';
 
 class App extends Component {
   state = {
@@ -11,7 +11,6 @@ class App extends Component {
     status: 'idle',
     images: [],
     error: null,
-    showModal: false,
   };
 
   componentDidUpdate = (prevProps, prevState) => {
@@ -31,7 +30,6 @@ class App extends Component {
               };
             }
           );
-          console.log(images);
           this.setState(prevState => ({
             images: [...prevState.images, ...images],
             status: 'resolved',
@@ -47,16 +45,12 @@ class App extends Component {
     this.setState({ inputValue: inputValue });
   };
 
-  toggleModal = () => {
-    this.setState(({ showModal }) => ({ showModal: !showModal }));
-  };
-
   render() {
-    const { showModal } = this.state;
+    const { images } = this.state;
     return (
       <Container>
         <Searchbar onSubmit={this.handleFormSubmit} />
-        {showModal && <Modal onClose={this.toggleModal}></Modal>}
+        {images.length > 0 && <ImageGallery data={images} />}
       </Container>
     );
   }
