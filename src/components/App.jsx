@@ -3,6 +3,7 @@ import { Container } from './App.styled';
 import Searchbar from './Searchbar';
 import fetchImg from '../Fetch/Fetch';
 import ImageGallery from './ImageGallery';
+import Button from './Button';
 
 class App extends Component {
   state = {
@@ -18,18 +19,9 @@ class App extends Component {
     if (prevState.inputValue !== inputValue || prevState.page !== page) {
       this.setState({ status: 'pending' });
 
-      fetchImg(inputValue)
+      fetchImg(inputValue, page)
         .then(resp => {
-          const images = resp.hits.map(
-            ({ id, webformatURL, largeImageURL, tags }) => {
-              return {
-                id: id,
-                webformatURL: webformatURL,
-                largeImageURL: largeImageURL,
-                tags: tags,
-              };
-            }
-          );
+          const images = resp.hits;
           this.setState(prevState => ({
             images: [...prevState.images, ...images],
             status: 'resolved',
@@ -45,12 +37,19 @@ class App extends Component {
     this.setState({ inputValue: inputValue });
   };
 
+  loadMore = () => {
+    this.setState(prevState => ({ page: prevState.page + 1 }));
+  };
+
   render() {
-    const { images } = this.state;
+    const { images, status } = this.state;
     return (
       <Container>
         <Searchbar onSubmit={this.handleFormSubmit} />
-        {images.length > 0 && <ImageGallery data={images} />}
+        {images && <ImageGallery data={images} />}
+        {images.length >= 12 && status === 'resolved' && (
+          <Button onClick={this.loadMore} />
+        )}
       </Container>
     );
   }
