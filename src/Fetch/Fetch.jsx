@@ -7,8 +7,6 @@ export default function fetchImg(inputValue, page = 1) {
     if (resp.ok) {
       return resp.json();
     }
-    return Promise.reject(
-      new Error(`There is no image with ${inputValue}, input something else!`)
-    );
+    return Promise.reject(new Error());
   });
 }

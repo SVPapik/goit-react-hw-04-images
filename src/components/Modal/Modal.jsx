@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { createPortal } from 'react-dom';
 import { Backdrop, ModalContent } from './Modal.styled';
+import PropTypes from 'prop-types';
 
 const modalRoot = document.querySelector('#modal-root');
 
@@ -26,11 +27,11 @@ class Modal extends Component {
   };
 
   render() {
-    const { url, alt } = this.props;
+    const { largeImageURL, alt } = this.props;
     return createPortal(
       <Backdrop onClick={this.onBackdropClick}>
         <ModalContent>
-          <img src={url} alt={alt} />
+          <img src={largeImageURL} alt={alt} />
         </ModalContent>
       </Backdrop>,
       modalRoot
@@ -39,3 +40,8 @@ class Modal extends Component {
 }
 
 export default Modal;
+
+Modal.propTypes = {
+  largeImageURL: PropTypes.string.isRequired,
+  alt: PropTypes.string.isRequired,
+};

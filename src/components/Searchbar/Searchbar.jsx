@@ -22,7 +22,9 @@ class Searchbar extends Component {
     e.preventDefault();
 
     if (this.state.inputValue.trim() === '') {
-      Notiflix.Notify.failure('Please, input your request!');
+      Notiflix.Notify.failure(
+        `No name - no images. Please, input your request!`
+      );
       return;
     }
 
@@ -53,3 +55,8 @@ class Searchbar extends Component {
 }
 
 export default Searchbar;
+
+Notiflix.Notify.init({
+  distance: '10px',
+  timeout: 2500,
+});
