@@ -34,7 +34,7 @@ class App extends Component {
   };
 
   handleFormSubmit = inputValue => {
-    this.setState({ inputValue: inputValue });
+    this.setState({ inputValue: inputValue, images: [], page: 1 });
   };
 
   loadMore = () => {
