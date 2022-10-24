@@ -4,6 +4,7 @@ import Searchbar from './Searchbar';
 import fetchImg from '../Fetch/Fetch';
 import ImageGallery from './ImageGallery';
 import Button from './Button';
+import Loader from './Loader';
 
 class App extends Component {
   state = {
@@ -47,6 +48,7 @@ class App extends Component {
       <Container>
         <Searchbar onSubmit={this.handleFormSubmit} />
         {images && <ImageGallery data={images} />}
+        {status === 'pending' && <Loader />}
         {images.length >= 12 && status === 'resolved' && (
           <Button onClick={this.loadMore} />
         )}
