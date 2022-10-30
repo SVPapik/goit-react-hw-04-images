@@ -7,7 +7,7 @@ const ImageGalleryItem = ({ webformatURL, largeImageURL, tags }) => {
   const [showModal, setShowModal] = useState(false);
 
   const toggleModal = () => {
-    setShowModal(showModal => !showModal);
+    setShowModal(!showModal);
   };
 
   return (
