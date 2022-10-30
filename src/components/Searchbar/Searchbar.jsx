@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { useState } from 'react';
 import { MdImageSearch } from 'react-icons/md';
 import Notiflix from 'notiflix';
 import {
@@ -8,53 +8,54 @@ import {
   SearchFormBtnLabel,
   SearchFormInput,
 } from './Searchbar.styled';
+import PropTypes from 'prop-types';
 
-class Searchbar extends Component {
-  state = {
-    inputValue: '',
+const Searchbar = ({ onSubmit }) => {
+  const [inputValue, setInputValue] = useState('');
+
+  const handleChange = e => {
+    setInputValue(e.currentTarget.value.toLowerCase());
   };
 
-  handleChange = e => {
-    this.setState({ inputValue: e.currentTarget.value.toLowerCase() });
-  };
-
-  handleSubmit = e => {
+  const handleSubmit = e => {
     e.preventDefault();
 
-    if (this.state.inputValue.trim() === '') {
+    if (inputValue.trim() === '') {
       Notiflix.Notify.failure(
         `No name - no images. Please, input your request!`
       );
       return;
     }
 
-    this.props.onSubmit(this.state.inputValue);
-    this.setState({ inputValue: '' });
+    onSubmit(inputValue);
+    setInputValue('');
   };
 
-  render() {
-    return (
-      <SearchBar>
-        <SearchForm onSubmit={this.handleSubmit}>
-          <SearchFormBtn type="submit">
-            <MdImageSearch size={40} />
-            <SearchFormBtnLabel>Search</SearchFormBtnLabel>
-          </SearchFormBtn>
-          <SearchFormInput
-            value={this.state.inputValue}
-            onChange={this.handleChange}
-            type="text"
-            autocomplete="off"
-            autoFocus
-            placeholder="Search images and photos"
-          />
-        </SearchForm>
-      </SearchBar>
-    );
-  }
-}
+  return (
+    <SearchBar>
+      <SearchForm onSubmit={handleSubmit}>
+        <SearchFormBtn type="submit">
+          <MdImageSearch size={40} />
+          <SearchFormBtnLabel>Search</SearchFormBtnLabel>
+        </SearchFormBtn>
+        <SearchFormInput
+          value={inputValue}
+          onChange={handleChange}
+          type="text"
+          autocomplete="off"
+          autoFocus
+          placeholder="Search images and photos"
+        />
+      </SearchForm>
+    </SearchBar>
+  );
+};
 
 export default Searchbar;
+
+Searchbar.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};
 
 Notiflix.Notify.init({
   distance: '10px',
