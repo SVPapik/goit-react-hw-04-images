@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import fetchImg from '../utils/fetch';
+import fetchImg from '../utils/Fetch';
 import Searchbar from './Searchbar';
 import ImageGallery from './ImageGallery';
 import Button from './Button';
