@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
-import { Container } from './App.styled';
+
+import fetchImg from '../utils/fetch';
 import Searchbar from './Searchbar';
-import fetchImg from '../Utils/Fetch';
 import ImageGallery from './ImageGallery';
 import Button from './Button';
 import Loader from './Loader';
+
+import { Container } from './App.styled';
 
 const App = () => {
   const [inputValue, setInputValue] = useState('');

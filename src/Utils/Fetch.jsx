@@ -9,3 +9,5 @@ export default function fetchImg(inputValue, page) {
     return Promise.reject(new Error());
   });
 }
+
+//key is in .env file

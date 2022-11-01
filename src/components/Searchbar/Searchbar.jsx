@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { MdImageSearch } from 'react-icons/md';
 import Notiflix from 'notiflix';
+import PropTypes from 'prop-types';
+
 import {
   SearchBar,
   SearchForm,
@@ -8,7 +10,6 @@ import {
   SearchFormBtnLabel,
   SearchFormInput,
 } from './Searchbar.styled';
-import PropTypes from 'prop-types';
 
 const Searchbar = ({ onSubmit }) => {
   const [inputValue, setInputValue] = useState('');

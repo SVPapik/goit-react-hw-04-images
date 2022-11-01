@@ -1,7 +1,9 @@
 import { useState } from 'react';
-import Modal from 'components/Modal';
-import { GalleryItem, Image } from './ImageGalleryItem.styled';
 import PropTypes from 'prop-types';
+
+import Modal from 'components/Modal';
+
+import { GalleryItem, Image } from './ImageGalleryItem.styled';
 
 const ImageGalleryItem = ({ webformatURL, largeImageURL, tags }) => {
   const [showModal, setShowModal] = useState(false);
