@@ -10,4 +10,4 @@ export default function fetchImg(inputValue, page) {
   });
 }
 
-//key is in .env file
+//key is in env file
